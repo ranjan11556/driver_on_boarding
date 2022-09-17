@@ -1,0 +1,165 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2638
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\froman\fcharset0 Times-Roman;
+\f3\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28300\viewh17700\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs36 \cf0 Driver On-Boarding Module:
+\f1\b0 \
+\
+
+\f0\b FR:
+\f1\b0 \
+
+\fs28 1. Sign up as a driver eg: enter profile\
+2. Trigger OnBoarding\
+     A) Doc collection => BackGround Verification => Shipment of tracking devices\
+                                                                              => Educative/protocol/rule Course\
+3. \cf2 \expnd0\expndtw0\kerning0
+Allow a driver to mark when they are ready to take a ride 
+\f2\fs24 \
+\
+
+\f1\fs28 Additional :\
+1. Notification of each steps and progress\
+2. Fraud detection
+\fs36 \
+\
+
+\fs28 \
+
+\f0\b APIs:
+\f1\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 https://uber.com/\
+Localhoist:8082\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 1. POST : /login/\
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf0     BODY \{ login : mob no.  ,  password': '123456' \}
+\fs24 \outl0\strokewidth0 \strokec2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf2 \outl0\strokewidth0 2. POST : /logout/\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs24 \cf0      
+\fs28 BODY \{ session : \'93ssvsvsvsvdkdfhdjksdhnjdhv\'92\}
+\fs24 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf2 \
+3. POST : /signup/\
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf0 BODY \{\
+               FirstName : \'93ranjan\'94\
+               LsatName : \'93Kumar\'94\
+               password. :  \'93kjhjkswhcjs\'94\
+	    Phone NO. : \'93951231\'94\
+	    City you\'92ll drive : \'93blr\'94\
+	    Invite Code(optional) : \'93XDBD45X\'94 \
+            \}
+\fs24 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf2 4. POST : /upload/			+      PUT\
+\pard\pardeftab720\partightenfactor0
+
+\f2 \cf0 BODY \{\
+		name: \'93DL\'94\
+		file: \'93xfile\'94\
+            \}\
+
+\f1 \cf2 Response \{\
+    200: ok\
+\}\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 5.  GET : /startRide/\
+\
+\
+
+\f0\b LLD:
+\f1\b0 \
+MVC:\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f3\fs26 \cf0 \kerning1\expnd0\expndtw0     client => waiter =>     chef        => freez.       => Ingredients\
+    UI.    =>  controller => services => DB(repo) => Models   \
+
+\f1\fs28 \cf2 \expnd0\expndtw0\kerning0
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b \cf2 Entity:\
+
+\f1\b0 \
+Driver: \{UUIDDriver, name, phone etc\'85, Finalstatus\}\
+\
+\
+Document => \{UUIDDriver, UUIDDoc ,  pic, DL, PAN Card, RC, Vechile permit\}\
+\
+// DocVerificationStatus =>\{UUIDDriver, UUIDDoc , pic, DL, PAN Card, RC, Vechile permit\}.    =>  \{to be uploaded, verification in progress, verified\}\
+\
+// DrivingStatus : \{NOT VERIFIED, ALLOWED, DRIVING, BLOCKED\}\
+\
+\
+
+\f0\b Controller:
+\f1\b0 \
+AuthController.  +  ProfileController\
+DocUploadController\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b \cf2 Services:
+\f1\b0 \
+DocumentCollectionService\
+BackGroundVerificationservice\
+TrackingDeviceShipment\
+\
+Notification\
+CustomerOnBoarding\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2  \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b \cf2 Repository:
+\f1\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 DriverRepo: \
+DocumentRepo\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b \cf2 Exceptions:
+\f1\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 \
+Logging:\
+\
+Docitem \{\
+	type name;\
+       String url;\
+       Status : \
+	int number:\
+\}\
+\
+1. Chain of responsibility ?\
+2. pubSub \
+\
+
+\f0\b TDD:\
+\
+\
+\
+
+\f1\b0 \
+}
